@@ -82,7 +82,3 @@ count_Wilcoxon_test <- function(count_norm, fdrThres=0.05, FC=2, p_value=0.05){
   
   return(out)
 }
-
-count_norm1 <- count_max_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap')
-
-out <- count_Wilcoxon_test(count_norm1)
