@@ -12,8 +12,8 @@ out <- count_Wilcoxon_test(count_norm)
 count_norm <- count_mean_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
 out <- count_Wilcoxon_test(count_norm) 
 
-fwrite(count_norm, file = 'TPM.txt', sep = '\t') \
-fwrite(out, file = 'DEGs.txt', sep = '\t')
+fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
+fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
 ***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
