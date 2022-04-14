@@ -12,6 +12,7 @@ out <- count_Wilcoxon_test(count_norm)
 count_norm <- count_mean_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
 out <- count_Wilcoxon_test(count_norm) 
 
+count_norm <- as.data.frame(count_norm) \
 fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
 fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
 
