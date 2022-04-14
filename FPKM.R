@@ -1,9 +1,13 @@
 count_max_tpm <- function(fpkm_file='', annotation_file=''){
+  library(data.table)
+  
   # 读取 UCSC xena 下载的FPKM矩阵,反log转换成FPKM值
   # 读取注释文件(Ensembl ID, Symbol, 染色体起始终止位置及正负链)
   # 删除FPKM矩阵中没有注释的探针和其余信息
-  fpkm <- read.table(fpkm_file, header = T, row.names = 1)
-  annotation <- read.table(annotation_file, header = T)
+  fpkm <- fread(fpkm_file, data.table = F)
+  annotation <- fread(annotation_file, data.table = F)
+  row.names(fpkm) <- fpkm[,1]
+  fpkm <- fpkm[,-1]
   fpkm <- 2^fpkm - 1
   fpkm <- fpkm[rownames(fpkm) %in% annotation$id,] # 删除FPKM矩阵中没有注释的探针和其余信息
   
