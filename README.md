@@ -12,7 +12,7 @@ out <- count_Wilcoxon_test(count_norm)
 count_norm <- count_mean_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
 out <- count_Wilcoxon_test(count_norm) 
 
-# Survival
+## Survival
 ***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
 including survival sample filtering***
 
