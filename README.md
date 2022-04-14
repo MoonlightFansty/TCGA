@@ -22,5 +22,5 @@ survival_filter <- count_survival_filter('TCGA-BRCA.htseq_fpkm.tsv', 'TCGA-BRCA.
 fpkm <- survival_filter$fpkm \
 survival <- survival_filter$survival
 
-write.table(survival, file='TCGA-BRCA.survival.tsv',sep='\t', quote = F, row.names = F, col.names = T) \
-write.table(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv',sep='\t', quote = F, row.names = F, col.names = T)
+fwrite(survival, file='TCGA-BRCA.survival1.tsv',sep='\t') \
+fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm1.tsv',sep='\t')
