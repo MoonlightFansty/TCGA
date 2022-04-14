@@ -29,8 +29,6 @@ count_max_tpm <- function(fpkm_file='', annotation_file=''){
 }
 
 count_mean_tpm <- function(fpkm_file='', annotation_file=''){
-  options(stringsAsFactors = F)
-  
   library(data.table)
   library(tibble)
   library(dplyr)
