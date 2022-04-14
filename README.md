@@ -17,7 +17,10 @@ out <- count_Wilcoxon_test(count_norm)
 including survival sample filtering***
 
 代码示例: \
-*filter matrix which have survival and expression* \
+*filter samples which have both survival and expression data* \
 survival_filter <- count_survival_filter('TCGA-BRCA.htseq_fpkm.tsv', 'TCGA-BRCA.survival.tsv') \
 fpkm <- survival_filter$fpkm \
 survival <- survival_filter$survival
+
+write.table(survival, file='TCGA-BRCA.survival.tsv',sep='\t', quote = F, row.names = F, col.names = T) \
+write.table(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv',sep='\t', quote = F, row.names = F, col.names = T)
