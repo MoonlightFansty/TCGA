@@ -16,7 +16,7 @@ count_max_tpm <- function(fpkm_file='', annotation_file=''){
   ids <- annotation[, 1:2]
   colnames(ids) <- c('probe_id', 'symbol')
   ids$median <- apply(fpkm,1,median) # ids新建median这一列，列名为median，同时对FPKM这个矩阵按行操作，取每一行的中位数,将结果给到median这一列的每一行
-  ids <- ids[order(ids$symbol,ids$median,decreasing = T),]#对ids$symbol按照ids$median中位数从大到小排列的顺序排序,将对应的行赋值为一个新的ids
+  ids <- ids[order(ids$symbol,ids$median,decreasing = T),] # 对ids$symbol按照ids$median中位数从大到小排列的顺序排序,将对应的行赋值为一个新的ids
   ids <- ids[!duplicated(ids$symbol),] # 将symbol这一列取取出重复项，'!'为否，即取出不重复的项，去除重复的gene ,保留每个基因最大表达量结果
   fpkm <- fpkm[ids$probe_id,] # 新的ids取出probe_id这一列,将FPKM按照取出的这一列中的每一行组成一个新的FPKM
   rownames(fpkm) <- ids$symbol # 把ids的symbol这一列中的每一行给FPKM作为FPKM的行名
