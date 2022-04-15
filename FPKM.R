@@ -28,6 +28,7 @@ count_max_tpm <- function(fpkm_file='', annotation_file=''){
   return(tpm)
 }
 
+
 count_mean_tpm <- function(fpkm_file='', annotation_file=''){
   library(data.table)
   library(tibble)
@@ -51,6 +52,7 @@ count_mean_tpm <- function(fpkm_file='', annotation_file=''){
   
   return(tpm)
 }
+
 
 count_Wilcoxon_test <- function(count_norm, FDR=0.05, FC=2, p_value=0.05){
   library(stringr)
