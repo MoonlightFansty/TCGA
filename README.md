@@ -17,7 +17,7 @@ fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
 fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
-***pre-processing TCGA or GDC RNAseq data(FPKM) and survival data(including phenotype) from UCSC xena \
+***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
 including survival sample filtering***
 
 代码示例: \
@@ -28,3 +28,6 @@ survival <- survival_filter$survival
 
 fwrite(survival, file='TCGA-BRCA.survival1.tsv', sep='\t') \
 fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm1.tsv', sep='\t')
+
+***pre-processing TCGA or GDC survival data from UCSC xena \
+including Gene set and survival matrix***
