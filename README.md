@@ -4,11 +4,11 @@
 including FPKM normalization and Wilcoxon rank sum test***
 
 代码示例: \
-*matrix get max genes expression which have multi-rows* \
+*matrix get max gene expression which have multi-rows* \
 count_norm <- count_max_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
 out <- count_Wilcoxon_test(count_norm) 
 
-*matrix get mean genes expression which have multi-rows* \
+*matrix get mean gene expression which have multi-rows* \
 count_norm <- count_mean_tpm('TCGA-BRCA.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
 out <- count_Wilcoxon_test(count_norm) 
 
@@ -17,7 +17,7 @@ fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
 fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
-***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
+***pre-processing TCGA or GDC RNAseq data(FPKM) and survival data(including phenotype) from UCSC xena \
 including survival sample filtering***
 
 代码示例: \
