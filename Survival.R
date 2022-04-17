@@ -94,11 +94,5 @@ survival_tpm <- function(gene_list=gene_list, survival_file='', tpm_file=''){
   group_list <- ifelse(as.numeric(str_sub(row.names(survival_matrix), 14, 15))<10, TRUE, FALSE)
   survival_matrix <- survival_matrix[group_list, ]
   
-  # 对应gene list的矩阵
-  # 构建生存信息和gene list的矩阵
-  survival_list <- c('status', 'time', gene_list)
-  survival_list <- intersect(colnames(survival_matrix), survival_list)
-  survival_matrix <- survival_matrix[, survival_list]
-  
   return(survival_matrix)
 }
