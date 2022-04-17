@@ -30,4 +30,13 @@ fwrite(survival, file='TCGA-BRCA.survival1.tsv', sep='\t') \
 fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm1.tsv', sep='\t')
 
 ***pre-processing TCGA or GDC survival data from UCSC xena \
-including Gene set and survival matrix***
+including Gene set and survival matrix \
+Univariate Cox regression***
+
+代码示例: \
+*select genes from Gene set and DEG \
+matrix with survival and TPM* \
+gene_list <- gene_set_xls('DEG.txt', 'Gene_set.xls', merge_method = 'union')
+survival_matrix <- survival_tpm(survival_file = 'TCGA-BRCA.survival.tsv', tpm_file = 'TPM.txt') \
+uni_cox_report <- survival_uni_cox(gene_list, survival_matrix)
+
