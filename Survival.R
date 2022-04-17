@@ -96,3 +96,74 @@ survival_tpm <- function(gene_list=gene_list, survival_file='', tpm_file=''){
   
   return(survival_matrix)
 }
+
+
+survival_uni_cox <- function(gene_list, survival_matrix){
+  library(survival)
+  
+  # 对应gene list的矩阵
+  # 构建生存信息和gene list的矩阵
+  gene_list <- intersect(colnames(survival_matrix), gene_list)
+  
+  uni_cox <- function(single_gene) {
+    formula <- as.formula(paste('Surv(time, status)~', single_gene))
+    surv_uni_cox <- summary(coxph(formula, survival_matrix))
+    ph_hypothesis_p <- try({cox.zph(coxph(formula, survival_matrix))$table[1, 3]}, silent = TRUE)
+    if('try-error' %in% class(ph_hypothesis_p)){
+      ph_hypothesis_p <- 0
+    }
+    if (surv_uni_cox$coefficients[, 5] < 0.05 & ph_hypothesis_p > 0.05){
+      single_gene_report <- data.frame('Gene_symbol'=single_gene,
+                                       'beta'=surv_uni_cox$coefficients[, 1],
+                                       'Hazard_Ratio'=exp(surv_uni_cox$coefficients[, 1]),
+                                       'z_pvalue'=surv_uni_cox$coefficients[, 5],
+                                       'Wald_pvalue'=as.numeric(surv_uni_cox$waldtest[3]),
+                                       'Likelihood_pvalue'=as.numeric(surv_uni_cox$logtest[3]))
+      
+      single_gene_report
+    }
+  }
+  
+  gene_report <- lapply(gene_list, uni_cox)
+  uni_cox_report <- do.call(rbind, gene_report)
+  
+  return(uni_cox_report)
+}
+
+
+# Old Version
+# survival_uni_cox <- function(gene_list, survival_matrix){
+#   library(survival)
+# 
+#   # 对应gene list的矩阵
+#   # 构建生存信息和gene list的矩阵
+#   gene_list <- intersect(colnames(survival_matrix), gene_list)
+#   formula_list <- sapply(gene_list, function(gene_symbol) as.formula(paste('Surv(time, status)~', gene_symbol)))
+#   uni_cox_list <- lapply(formula_list, function(formula){coxph(formula, survival_matrix)})
+#   
+#   ph_hypothesis_p <- c()
+#   for (i in 1:length(uni_cox_list)){
+#     ph_hypothesis <- try({cox.zph(uni_cox_list[[i]])$table[1, 3]}, silent = TRUE)
+#     if('try-error' %in% class(ph_hypothesis)){
+#       ph_hypothesis <- 0
+#     }
+#     ph_hypothesis_p <- append(ph_hypothesis_p, ph_hypothesis)
+#   }
+# 
+#   uni_cox <- function(x) {
+#     surv_uni_cox <- summary(x)
+#     gene_report <- data.frame('beta'=surv_uni_cox$coefficients[, 1],
+#                               'Hazard_Ratio'=exp(surv_uni_cox$coefficients[, 1]),
+#                               'z_pvalue'=surv_uni_cox$coefficients[, 5],
+#                               'Wald_pvalue'=as.numeric(surv_uni_cox$waldtest[3]),
+#                               'Likelihood_pvalue'=as.numeric(surv_uni_cox$logtest[3]),
+#                               'ph_hypothesis_p'=ph_hypothesis_p)
+# 
+#     return(gene_report)
+#   }
+#   
+#   gene_report <- lapply(uni_cox_list, uni_cox)
+#   uni_cox_report <- do.call(rbind, gene_report)
+# 
+#   return(uni_cox_report)
+# }
