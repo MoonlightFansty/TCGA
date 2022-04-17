@@ -43,4 +43,4 @@ survival_matrix <- survival_tpm(survival_file = 'TCGA-BRCA.survival.tsv', tpm_fi
 代码示例: \
 uni_cox_report <- survival_uni_cox(gene_list, survival_matrix)
 
-fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm1.tsv', sep='\t')
+fwrite(uni_cox_report, file='uni_cox.txt', sep='\t')
