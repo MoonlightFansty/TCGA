@@ -1,25 +1,3 @@
-# count_survival_filter <- function(fpkm_file='', survival_file=''){
-#   library(data.table)
-#   
-#   # 过滤缺失生存信息FPKM矩阵中的样本
-#   fpkm <- fread(fpkm_file, data.table = F)
-#   survival <- fread(survival_file, data.table = F)
-#   survival <- survival[survival$sample %in% colnames(fpkm),]
-#   fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% survival$sample)]
-#   survival_filter <- list(fpkm = fpkm, survival = survival)
-#   
-#   return(survival_filter)
-# }
-# 
-# 
-# survival_filter <- count_survival_filter(fpkm_file='TCGA-BRCA.htseq_fpkm.tsv', survival_file='TCGA-BRCA.survival.tsv')
-# fpkm <- survival_filter$fpkm
-# survival <- survival_filter$survival
-# 
-# fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
-# fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t')
-
-
 sample_filter <- function(sample_file='TCGA-sample.xlsx'){
   # 删除缺失信息的样本
   sample_id <- readxl::read_excel(sample_file)
@@ -62,5 +40,24 @@ fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t')
 fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
 
 
-
-
+# Old version
+# count_survival_filter <- function(fpkm_file='', survival_file=''){
+#   library(data.table)
+#   
+#   # 过滤缺失生存信息FPKM矩阵中的样本
+#   fpkm <- fread(fpkm_file, data.table = F)
+#   survival <- fread(survival_file, data.table = F)
+#   survival <- survival[survival$sample %in% colnames(fpkm),]
+#   fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% survival$sample)]
+#   survival_filter <- list(fpkm = fpkm, survival = survival)
+#   
+#   return(survival_filter)
+# }
+# 
+# 
+# survival_filter <- count_survival_filter(fpkm_file='TCGA-BRCA.htseq_fpkm.tsv', survival_file='TCGA-BRCA.survival.tsv')
+# fpkm <- survival_filter$fpkm
+# survival <- survival_filter$survival
+# 
+# fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
+# fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t')
