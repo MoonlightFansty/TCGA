@@ -1,7 +1,6 @@
 # TCGA-RNAseq
 ## Filter
-***Filtering TCGA or GDC data from UCSC xena \
-filtering out samples with missing information***
+***filtering TCGA or GDC data from UCSC xena***
 
 代码示例: \
 sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx') \
