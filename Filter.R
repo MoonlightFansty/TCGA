@@ -1,4 +1,4 @@
-sample_filter <- function(sample_file='TCGA-sample.xlsx'){
+sample_filter <- function(sample_file=''){
   # 删除缺失信息的样本
   sample_id <- readxl::read_excel(sample_file)
   sample_list <- sample_id[[1]]
