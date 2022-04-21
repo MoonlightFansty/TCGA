@@ -32,7 +32,7 @@ count_filter <- function(sample_list, fpkm_file=''){
 }
 
 
-# Old version
+# Old Version
 # count_survival_filter <- function(fpkm_file='', survival_file=''){
 #   library(data.table)
 #   
@@ -45,11 +45,3 @@ count_filter <- function(sample_list, fpkm_file=''){
 #   
 #   return(survival_filter)
 # }
-# 
-# 
-# survival_filter <- count_survival_filter(fpkm_file='TCGA-BRCA.htseq_fpkm.tsv', survival_file='TCGA-BRCA.survival.tsv')
-# fpkm <- survival_filter$fpkm
-# survival <- survival_filter$survival
-# 
-# fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
-# fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t')
