@@ -1,6 +1,6 @@
 # TCGA-RNAseq
 ## Filter
-***Filtering TCGA or GDC RNAseq data from UCSC xena \
+***Filtering TCGA or GDC data from UCSC xena \
 filtering out samples with missing information***
 
 代码示例: \
