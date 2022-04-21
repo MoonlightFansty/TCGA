@@ -32,14 +32,6 @@ count_filter <- function(sample_list, fpkm_file=''){
 }
 
 
-sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx')
-fpkm <- count_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv')
-survival <- survival_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
-
-fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t')
-fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
-
-
 # Old version
 # count_survival_filter <- function(fpkm_file='', survival_file=''){
 #   library(data.table)
