@@ -11,6 +11,7 @@ sample_filter <- function(sample_file='TCGA-sample.xlsx'){
   return(sample_list)
 }
 
+
 survival_filter <- function(sample_list, survival_file=''){
   library(data.table)
   
@@ -20,6 +21,7 @@ survival_filter <- function(sample_list, survival_file=''){
   
   return(survival)
 }
+
 
 count_filter <- function(sample_list, fpkm_file=''){
   library(data.table)
