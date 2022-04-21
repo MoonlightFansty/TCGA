@@ -1,4 +1,16 @@
 # TCGA-RNAseq
+## Filter
+***Filtering TCGA or GDC RNAseq data from UCSC xena \
+filtering out samples with missing information***
+
+代码示例: \
+sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx') \
+fpkm <- count_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv') \
+survival <- survival_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
+
+fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t') \
+fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
+
 ## FPKM
 ***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
 including FPKM normalization and Wilcoxon rank sum test***
@@ -17,18 +29,6 @@ fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
 fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
-***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
-including survival sample filtering***
-
-代码示例: \
-*filter samples which have both survival and expression data* \
-survival_filter <- count_survival_filter('TCGA-BRCA.htseq_fpkm.tsv', 'TCGA-BRCA.survival.tsv') \
-fpkm <- survival_filter$fpkm \
-survival <- survival_filter$survival
-
-fwrite(survival, file='TCGA-BRCA.survival1.tsv', sep='\t') \
-fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm1.tsv', sep='\t')
-
 ***Univariate Cox regression \
 including Gene set and survival matrix***
 
