@@ -5,8 +5,9 @@ including FPKM and survival filtering***
 
 代码示例: \
 sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx') \
-fpkm <- count_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv') \
-survival <- survival_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
+fpkm <- count_sample_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv') \
+fpkm <- count_gene_filter(fpkm, filter_method = 'half_zero') \
+survival <- survival_sample_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
 
 fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t') \
 fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
