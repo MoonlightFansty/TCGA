@@ -6,7 +6,7 @@ including FPKM and survival filtering***
 代码示例: \
 sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx') \
 fpkm <- count_sample_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv') \
-fpkm <- count_gene_filter(fpkm, filter_method = 'half_zero') \
+fpkm <- count_gene_filter(fpkm, filter_method='half_zero') \
 survival <- survival_sample_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
 
 fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t') \
@@ -27,7 +27,8 @@ out <- count_Wilcoxon_test(count_norm)
 
 count_norm <- as.data.frame(count_norm) \
 fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
-fwrite(out, file = 'DEG.txt', sep = '\t', row.names = T)
+fwrite(wilcox_report$out, file = 'Wilcoxon_test.txt', sep = '\t', row.names = T) \
+fwrite(wilcox_report$degs, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
 ***Univariate Cox regression \
