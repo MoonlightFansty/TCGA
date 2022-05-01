@@ -79,9 +79,10 @@ count_Wilcoxon_test <- function(count_norm, FDR=0.05, FC=2, p_value=0.05){
   out <- data.frame(log2foldChange=foldChanges, pValues=pvalues, FDR=fdr)
   rownames(out) <- rownames(count_norm)
   out <- na.omit(out)
-  out <- out[out$FDR<FDR, ]
-  out <- out[out$pValues<p_value,]
-  out <- out[abs(out$log2foldChange)>FC,]
+  degs <- out[out$FDR<FDR, ]
+  degs <- degs[degs$pValues<p_value,]
+  degs <- degs[abs(degs$log2foldChange)>FC,]
+  wilcox_report <- list(out, degs)
   
-  return(out)
+  return(wilcox_report)
 }
