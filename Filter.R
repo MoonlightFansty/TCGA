@@ -12,7 +12,7 @@ sample_filter <- function(sample_file=''){
 }
 
 
-survival_filter <- function(sample_list, survival_file=''){
+survival_sample_filter <- function(sample_list, survival_file=''){
   library(data.table)
   
   # 删除缺失信息的样本
@@ -23,7 +23,7 @@ survival_filter <- function(sample_list, survival_file=''){
 }
 
 
-count_filter <- function(sample_list, fpkm_file=''){
+count_sample_filter <- function(sample_list, fpkm_file=''){
   library(data.table)
   
   # 删除缺失信息的样本
@@ -34,6 +34,17 @@ count_filter <- function(sample_list, fpkm_file=''){
 }
 
 
+count_gene_filter <- function(fpkm, filter_method = 'half_zero'){
+  if (filter_method == 'half_zero'){
+    # 保留在一半样本以上表达的基因
+    fpkm <- fpkm[apply(fpkm, 1, function(x) sum(x > 0) > 0.5*ncol(fpkm)), ]
+  } else if (filter_method == 'zero'){
+    # 去除所有样本表达全为0的基因
+    fpkm <- fpkm[rowSums(fpkm)>0, ]
+  }
+}
+
+                       
 # Old Version
 # count_survival_filter <- function(fpkm_file='', survival_file=''){
 #   library(data.table)
