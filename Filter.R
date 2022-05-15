@@ -12,6 +12,17 @@ sample_filter <- function(sample_file=''){
 }
 
 
+count_sample_filter <- function(sample_list, fpkm_file=''){
+  library(data.table)
+  
+  # 删除缺失信息的样本
+  fpkm <- fread(fpkm_file, data.table = F)
+  fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% sample_list)]
+  
+  return(fpkm)
+}
+
+
 survival_sample_filter <- function(sample_list, survival_file=''){
   library(data.table)
   
@@ -23,14 +34,14 @@ survival_sample_filter <- function(sample_list, survival_file=''){
 }
 
 
-count_sample_filter <- function(sample_list, fpkm_file=''){
+phenotype_sample_filter <- function(sample_list, phenotype_file=''){
   library(data.table)
   
   # 删除缺失信息的样本
-  fpkm <- fread(fpkm_file, data.table = F)
-  fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% sample_list)]
+  phenotype <- fread(phenotype_file, data.table = F)
+  phenotype <- phenotype[phenotype$submitter_id.samples %in% sample_list,]
   
-  return(fpkm)
+  return(phenotype)
 }
 
 
