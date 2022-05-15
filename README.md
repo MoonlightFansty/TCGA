@@ -38,7 +38,7 @@ including Gene set and survival matrix***
 
 代码示例: \
 gene_list <- gene_set_xls('DEG.txt', 'Gene_set.xls', merge_method = 'union') \
-survival_matrix <- survival_tpm(survival_file = 'TCGA-BRCA.survival.tsv', tpm_file = 'TPM.txt') \
+survival_matrix <- survival_tpm(survival_file = 'TCGA-LUAD.survival.tsv', tpm_file = 'TPM.txt') \
 uni_cox_report <- survival_uni_cox(gene_list, survival_matrix)
 
 fwrite(uni_cox_report, file='Uni_Cox.txt', sep='\t')
