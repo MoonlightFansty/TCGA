@@ -82,7 +82,7 @@ count_Wilcoxon_test <- function(count_norm, FDR=0.05, FC=2, p_value=0.05){
   degs <- out[out$FDR<FDR, ]
   degs <- degs[degs$pValues<p_value,]
   degs <- degs[abs(degs$log2foldChange)>FC,]
-  wilcox_report <- list(out, degs)
+  wilcox_report <- list(out=out, degs=degs)
   
   return(wilcox_report)
 }
