@@ -21,11 +21,11 @@ including FPKM normalization and Wilcoxon rank sum test***
 代码示例: \
 *matrix get max gene expression which have multi-rows* \
 count_norm <- count_max_tpm('TCGA-LUAD.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
-out <- count_Wilcoxon_test(count_norm) 
+wilcox_report <- count_Wilcoxon_test(count_norm) 
 
 *matrix get mean gene expression which have multi-rows* \
 count_norm <- count_mean_tpm('TCGA-LUAD.htseq_fpkm.tsv', 'gencode.v22.annotation.gene.probeMap') \
-out <- count_Wilcoxon_test(count_norm) 
+wilcox_report <- count_Wilcoxon_test(count_norm) 
 
 count_norm <- as.data.frame(count_norm) \
 fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
