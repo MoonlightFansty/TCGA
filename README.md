@@ -4,13 +4,15 @@
 including FPKM and survival filtering***
 
 代码示例: \
-sample_list <- sample_filter(sample_file = 'TCGA-sample.xlsx') \
-fpkm <- count_sample_filter(sample_list, fpkm_file='TCGA-BRCA.htseq_fpkm.tsv') \
-fpkm <- count_gene_filter(fpkm, filter_method='half_zero') \
-survival <- survival_sample_filter(sample_list, survival_file='TCGA-BRCA.survival.tsv')
+sample_list <- sample_filter(sample_file = 'TCGA-LUAD-sample.xlsx') \
+fpkm <- count_sample_filter(sample_list, fpkm_file='TCGA-LUAD.htseq_fpkm.tsv') \
+fpkm <- count_gene_filter(fpkm, filter_method = 'half_zero') \
+survival <- survival_sample_filter(sample_list, survival_file='TCGA-LUAD.survival.tsv') \
+phenotype <- phenotype_sample_filter(sample_list, phenotype_file='TCGA-LUAD.GDC_phenotype.tsv' )
 
-fwrite(fpkm, file='TCGA-BRCA.htseq_fpkm.tsv', sep='\t') \
-fwrite(survival, file='TCGA-BRCA.survival.tsv', sep='\t')
+fwrite(fpkm, file='TCGA-LUAD.htseq_fpkm.tsv', sep='\t') \
+fwrite(survival, file='TCGA-LUAD.survival.tsv', sep='\t') \
+fwrite(phenotype, file='TCGA-LUAD.GDC_phenotype.tsv', sep='\t')
 
 ## FPKM
 ***pre-processing TCGA or GDC RNAseq data(FPKM) from UCSC xena \
