@@ -29,8 +29,8 @@ wilcox_report <- count_Wilcoxon_test(count_norm)
 
 count_norm <- as.data.frame(count_norm) \
 fwrite(count_norm, file = 'TPM.txt', sep = '\t', row.names = T) \
-fwrite(wilcox_report[[1]], file = 'Wilcoxon_test.txt', sep = '\t', row.names = T) \
-fwrite(wilcox_report[[2]], file = 'DEG.txt', sep = '\t', row.names = T)
+fwrite(wilcox_report$out, file = 'Wilcoxon_test.txt', sep = '\t', row.names = T) \
+fwrite(wilcox_report$degs, file = 'DEG.txt', sep = '\t', row.names = T)
 
 ## Survival
 ***Univariate Cox regression \
