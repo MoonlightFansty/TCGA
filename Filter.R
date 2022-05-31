@@ -2,7 +2,7 @@ sample_filter <- function(sample_file=''){
   # 删除缺失信息的样本
   sample_id <- readxl::read_excel(sample_file)
   sample_list <- sample_id[[1]]
-  for (i in length(sample_id[1, ])){
+  for (i in 1:length(sample_id[1, ])){
     if (i != 1){
       sample_list <- intersect(sample_list, sample_id[[i]])
     }
