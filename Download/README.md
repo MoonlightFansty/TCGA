@@ -1,8 +1,8 @@
 # GDC Download
 ## 一、数据下载
-***download TCGA or GDC data from UCSC xena***
+***download TCGA or GDC data from UCSC xena*** 
 TCGA的33种癌症数据列表
-'''
+```
 mkdir TCGA
 cd TCGA
 
@@ -40,19 +40,19 @@ GDC TCGA Testicular Cancer (TGCT) (14 datasets)
 GDC TCGA Thymoma (THYM) (14 datasets)
 GDC TCGA Thyroid Cancer (THCA) (14 datasets)
 GDC TCGA Uterine Carcinosarcoma (UCS) (14 datasets)
-# ctrl+D 结束文件
+#ctrl+D 结束文件
 
 perl -alne '{/\((.*?)\)/;print $1}' cancer_list.txt |while read id;do 
 nohup wget https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-$id.{mutect2_snv,GDC_phenotype,survival,htseq_counts}.tsv.gz &
 done
-'''
-下载编码和非编码信息
-'''
+```
+下载编码和非编码信息 
+```
 wget http://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_22/gencode.v22.annotation.gtf.gz
 zcat gencode.v22.annotation.gtf.gz|perl -alne '{print if $F[2] eq "gene"}'|cut -d"\"" -f 2,4|sed 's/"/\t/g' > ensembID2type.txt
-'''
+```
 批量读取下载好的表达量矩阵，并且根据基因注释信息，拆分成为蛋白编码基因和非编码基因这两个不同的表达量矩阵
-'''
+```
 rm(list=ls())
 options(stringsAsFactors = F)
 library(stringr)  
@@ -130,13 +130,13 @@ lapply(fs, function(x){
        file = file.path('Rdata', paste0(pro,'Rdata')))
 
 })
-'''
+```
 查看表达矩阵里面的存储的蛋白编码基因和非编码基因这两个不同的表达量矩阵的基因数量和病人数量
-'''
+```
 fs=list.files('Rdata/',pattern = 'htseq_counts')
 fs
 do.call(rbind,lapply(fs, function(x){
   load(file =  file.path('Rdata/',x))  
   return(c(x,dim(pd_mat),dim(non_mat)))
 }))
-'''
+```
