@@ -43,7 +43,7 @@ GDC TCGA Uterine Carcinosarcoma (UCS) (14 datasets)
 #ctrl+D 结束文件
 
 perl -alne '{/\((.*?)\)/;print $1}' cancer_list.txt |while read id;do 
-nohup wget https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-$id.{mutect2_snv,GDC_phenotype,survival,htseq_counts}.tsv.gz &
+nohup wget https://gdc-hub.s3.us-east-1.amazonaws.com/download/TCGA-$id.{mutect2_snv,GDC_phenotype,survival,htseq_fpkm}.tsv.gz &
 done
 ```
 下载编码和非编码信息 
