@@ -1,6 +1,6 @@
 # GDC Download
 ## 一、数据下载
-***download TCGA or GDC data from UCSC xena*** 
+***download TCGA or GDC data from UCSC xena*** \
 TCGA的33种癌症数据列表
 ```
 mkdir TCGA
