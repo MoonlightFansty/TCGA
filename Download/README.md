@@ -51,6 +51,7 @@ done
 wget http://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_22/gencode.v22.annotation.gtf.gz
 zcat gencode.v22.annotation.gtf.gz|perl -alne '{print if $F[2] eq "gene"}'|cut -d"\"" -f 2,4|sed 's/"/\t/g' > ensembID2type.txt
 ```
+## 二、数据预处理
 批量读取下载好的表达量矩阵，并且根据基因注释信息，拆分成为蛋白编码基因和非编码基因这两个不同的表达量矩阵
 ```
 rm(list=ls())
