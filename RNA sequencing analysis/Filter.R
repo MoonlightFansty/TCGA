@@ -48,10 +48,10 @@ phenotype_sample_filter <- function(sample_list, phenotype_file=''){
 count_gene_filter <- function(fpkm, filter_method = 'half_zero'){
   if (filter_method == 'half_zero'){
     # 保留在一半样本以上表达的基因
-    fpkm <- fpkm[apply(fpkm, 1, function(x) sum(x > 0) > 0.5*ncol(fpkm)), ]
+    fpkm <- fpkm[apply(fpkm[-1], 1, function(x) sum(x > 0) > 0.5*ncol(fpkm)), ]
   } else if (filter_method == 'zero'){
     # 去除所有样本表达全为0的基因
-    fpkm <- fpkm[rowSums(fpkm)>0, ]
+    fpkm <- fpkm[rowSums(fpkm[-1])>0, ]
   }
 }
 
