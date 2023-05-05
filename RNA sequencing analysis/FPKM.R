@@ -14,6 +14,7 @@ count_max_tpm <- function(fpkm_file='', annotation_file=''){
   # 读取注释文件(Ensembl ID, Symbol, 染色体起始终止位置及正负链)
   # 选取同一symbol最大表达的FPKM矩阵,并注释到基因名
   ids <- annotation[, 1:2]
+  ids <- ids[ids$id %in% rownames(fpkm),]
   colnames(ids) <- c('probe_id', 'symbol')
   ids$median <- apply(fpkm,1,median) # ids新建median这一列，列名为median，同时对FPKM这个矩阵按行操作，取每一行的中位数,将结果给到median这一列的每一行
   ids <- ids[order(ids$symbol,ids$median,decreasing = T),] # 对ids$symbol按照ids$median中位数从大到小排列的顺序排序,将对应的行赋值为一个新的ids
