@@ -1,5 +1,5 @@
 # RNA sequencing analysis
-## Filter
+## 01Sample-filtering
 ***filtering TCGA or GDC data from UCSC xena \
 including FPKM and survival filtering***
 
