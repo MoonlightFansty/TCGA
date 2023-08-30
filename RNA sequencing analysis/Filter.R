@@ -17,7 +17,7 @@ count_sample_filter <- function(sample_list, fpkm_file=''){
   
   # 删除缺失信息的样本
   fpkm <- fread(fpkm_file, data.table = F)
-  fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% sample_list)]
+  fpkm <- fpkm[, c(TRUE, colnames(fpkm)[-1] %in% sample_list)]
   
   return(fpkm)
 }
@@ -28,7 +28,7 @@ survival_sample_filter <- function(sample_list, survival_file=''){
   
   # 删除缺失信息的样本
   survival <- fread(survival_file, data.table = F)
-  survival <- survival[survival$sample %in% sample_list,]
+  survival <- survival[survival$sample %in% sample_list, ]
   
   return(survival)
 }
@@ -39,7 +39,7 @@ phenotype_sample_filter <- function(sample_list, phenotype_file=''){
   
   # 删除缺失信息的样本
   phenotype <- fread(phenotype_file, data.table = F)
-  phenotype <- phenotype[phenotype$submitter_id.samples %in% sample_list,]
+  phenotype <- phenotype[phenotype$submitter_id.samples %in% sample_list, ]
   
   return(phenotype)
 }
@@ -48,7 +48,7 @@ phenotype_sample_filter <- function(sample_list, phenotype_file=''){
 count_gene_filter <- function(fpkm, filter_method = 'half_zero'){
   if (filter_method == 'half_zero'){
     # 保留在一半样本以上表达的基因
-    fpkm <- fpkm[apply(fpkm[-1], 1, function(x) sum(x > 0) > 0.5*ncol(fpkm)), ]
+    fpkm <- fpkm[apply(fpkm[-1], 1, function(x) sum(x > 0) > 0.5 * ncol(fpkm)), ]
   } else if (filter_method == 'zero'){
     # 去除所有样本表达全为0的基因
     fpkm <- fpkm[rowSums(fpkm[-1])>0, ]
@@ -63,8 +63,8 @@ count_gene_filter <- function(fpkm, filter_method = 'half_zero'){
 #   # 过滤缺失生存信息FPKM矩阵中的样本
 #   fpkm <- fread(fpkm_file, data.table = F)
 #   survival <- fread(survival_file, data.table = F)
-#   survival <- survival[survival$sample %in% colnames(fpkm),]
-#   fpkm <- fpkm[,c(TRUE, colnames(fpkm)[-1] %in% survival$sample)]
+#   survival <- survival[survival$sample %in% colnames(fpkm), ]
+#   fpkm <- fpkm[, c(TRUE, colnames(fpkm)[-1] %in% survival$sample)]
 #   survival_filter <- list(fpkm = fpkm, survival = survival)
 #   
 #   return(survival_filter)
